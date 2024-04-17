@@ -15,6 +15,12 @@ import SellDrug from './../Pages/Manufacturer/SellDrug';
 import HospitalInfo from './../Pages/Hospital/HospitalInfo';
 import HospitalCart from './../Pages/Hospital/HospitalCart';
 import ManufacturerInfo from './../Pages/Manufacturer/ManufacturerInfo';
+import PatientInfo from './../Pages/Patient/PatientInfo';
+import PatientCart from './../Pages/Patient/PatientCart';
+import AllPatients from './../Pages/Admin/AllPatients';
+import AllHospital from './../Pages/Admin/AllHospital';
+import AllOrders from './../Pages/Admin/AllOrders';
+import AllManufacturer from './../Pages/Admin/AllManufacturer';
 
 
 
@@ -95,6 +101,43 @@ const router = createBrowserRouter([
          element:<HospitalCart></HospitalCart>
        }
 
+      ]
+    },
+    {
+      path:'/patient',
+      element:<Patient></Patient>,
+      children:[
+         {
+            path:'patientinfo',
+            element:<PatientInfo></PatientInfo>
+         },
+         {
+            path:'patientcart',
+            element:<PatientCart></PatientCart>
+         }
+      ]
+
+    },
+    {
+      path:'/admin',
+      element:<Admin></Admin>,
+      children:[
+         {
+            path:'allpatients',
+            element:<AllPatients></AllPatients>
+         },
+         {
+            path:'allhospitals',
+            element:<AllHospital></AllHospital>
+         },
+         {
+            path:'allorders',
+            element:<AllOrders></AllOrders>
+         },
+         {
+            path:'allmanufacturer',
+            element:<AllManufacturer></AllManufacturer>
+         }
       ]
     }
 
