@@ -1,14 +1,33 @@
-
+import {useContext} from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from './../../Provider/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
+    const {signIn}=useContext(AuthContext)
     const handleLogIn=(event)=>{
         event.preventDefault()
         const form=event.target;
         const email=form.email.value;
         const password=form.password.value;
-        const role=form.role.value;
-        console.log(email,password,role);
+
+        signIn(email,password)
+        .then(res => {
+            // Display success message using toast.success()
+            toast.success('Login successful!');
+            console.log(res);
+        })
+        .catch(error => {
+            // Display Firebase error message using toast.error()
+            if (error.code === 'auth/invalid-credential') {
+                toast.error('Invalid credentials. Please check your email and password.');
+            } else {
+                toast.error(error.message);
+            }
+            console.log(error);  // Optionally log the error
+        });
+        
+     
     }
     return (
         <div className="hero min-h-screen bg-base-200 ">
